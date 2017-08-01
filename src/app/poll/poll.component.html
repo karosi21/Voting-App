@@ -1,0 +1,49 @@
+<div class="col-md-6 col-md-offset-3">
+    <a [routerLink]="['/poll']" (click)="toCreatePoll()" class=" btn btn-info">Create Poll</a>
+        <ul class="list-unstyled" *ngFor="let poll of polls">
+            <li>
+                <a class="btn btn-link" (click)="getPollById(poll.id)">{{poll.title}}</a>
+            </li>
+        </ul>
+
+
+    <div *ngIf="pollById">
+             <h1>{{pollById.title}}</h1>
+            <p>{{pollById.description}}</p>
+             <!-- <form name="form" (ngSubmit)="submitVote(pollById.id,f)" #f="ngForm">  -->
+            <select class="form-control"  name="content" (change)="submitVote({'content':$event.target.value})">
+                <option value="undefined" disabled>Choose an option</option>
+                <option [ngValue]="val" *ngFor="let val of pollById.options" >{{val}}</option>
+            </select> <br>
+                 <!-- <button class="btn btn-primary">Submit</button>   -->
+             <!-- </form>  -->
+            
+    </div>
+ </div>
+
+
+        <div *ngIf="_createPoll" class="col-md-6 col-md-offset-3">
+            <h2>Create A Poll</h2>
+            <form name="form" (ngSubmit)="f.form.valid && createPoll()" #f="ngForm" novalidate>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid}">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" name="title" [(ngModel)]="regPoll.title" #title="ngModel" required />
+                    <div *ngIf="f.submitted && !title.valid" class="help-block">Title is required</div>
+                </div>
+                <div class="form-group" (ngSubmit)=" {'has-error': f.submitted && !description.valid}">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" [(ngModel)]="regPoll.description" #description="ngModel" required></textarea>
+                    <div *ngIf="f.submitted && !title.valid" class="help-block">Description is required</div>
+                </div>
+                <div class="form-group" (ngSubmit)=" {'has-error': f.submitted && !options.valid}">
+                    <label for="options">Options</label>
+                    <input type="text" class="form-control" name="options" [(ngModel)]="regPoll.options" #options="ngModel" required />
+                    <div *ngIf="f.submitted && !options.valid" class="help-block">Options is required</div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary">Create</button>
+                    <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+                </div>
+            </form>
+ </div>
