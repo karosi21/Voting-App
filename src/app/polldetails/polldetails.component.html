@@ -1,0 +1,10 @@
+  <div class="col-md-6 col-md-offset-3">   
+    <div *ngIf="polldetail">
+             <h1>{{polldetail.title}}</h1>
+            <p>{{polldetail.description}}</p>
+            <select class="form-control"  name="content" (change)="submitVote({'content':$event.target.value})">
+                <option value="undefined" disabled>Choose an option</option>
+                <option [ngValue]="val" *ngFor="let val of polldetail.options" >{{val}}</option>
+            </select> 
+    </div>
+ </div>

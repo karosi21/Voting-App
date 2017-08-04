@@ -1,23 +1,37 @@
+
 <div class="col-md-6 col-md-offset-3">
     <h1>Hi {{currentUser.user.userName}}</h1>
     <p>You're have logged in</p>
+    <div *ngIf="isUserAdmin">
     <ul  class="list-unstyled"   *ngFor="let user of users[0]">
-        <li >{{user.email}}
+        <li  >{{user.email}}
                 <a class="btn btn-link" (click)="getUserById(user.id)">View</a>
                 <a class="btn btn-link" (click)="deleteUser(user.id)">Delete</a>
                 <a class="btn btn-link" (click)="getUserForUpdate(user.id)">Update</a>
-                 <!-- <a class="btn btn-link"  -->
         </li>
     </ul>
+    </div>
+    <div *ngIf="!isUserAdmin">
+            <ul *ngIf="regUser" class="list-unstyled"  >
+             <li  >{{regUser.user.email}}
+             <a class="btn btn-link" (click)="getUserById(regUser.user.id)">View</a>
+            <a class="btn btn-link" (click)="deleteUser(regUser.user.id)">Delete</a>
+            <a class="btn btn-link" (click)="getUserForUpdate(regUser.user.id)">Update</a>  
+        </li>
+        </ul>
+    </div>
+
     <div *ngIf="userById">
         <p>
            Welcome to {{userById.userName}} profile
         </p>
     </div>
+
     <div *ngIf ="updateUserVal" class="col-md-6 col-md-offset-3">
         <h2>Update Profile</h2>
         <form name="form" (ngSubmit)="f.form.valid && updateUser(updateUserVal.id,f)" #f="ngForm" novalidate>
                 <div class="form-group" >
+                    
                     <label for="userName">UserName</label>
                     <input type="text" class="form-control" name="userName" [(ngModel)]="updateUserVal.userName" />
                 </div>
@@ -36,5 +50,7 @@
                 </div>
         </form>
     </div>
+
     <p><a  class="btn btn-link" (click)="logout()">Logout</a></p>
+
 </div>

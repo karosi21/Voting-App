@@ -8,12 +8,12 @@ export class PollService {
     baseUrl: string = ' http://localhost:1337/';
     constructor(private http: Http){}
 
-    getAll(){
+    getPolls(){
         return this.http.get(this.baseUrl+'polls', this.jwt())
             .map((response: Response) => response.json());
     }
 
-     getById(id: string){
+     getPollById(id: string){
          return this.http.get(this.baseUrl+'poll/'+id, this.jwt())
             .map((response: Response) => response.json());
     }
