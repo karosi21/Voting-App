@@ -13,8 +13,7 @@ import { RegisterComponent } from './register/index';
 import { PollComponent } from "./poll/index";
 import {PollDetailsComponent } from "./polldetails/index";
 import { CreatePollComponent } from './createpoll/index'
-
-// import { PollAnswerComponent } from "./pollanswer/index"
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 
@@ -35,7 +34,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     routing,
-    HttpModule
+    HttpModule,
+    ChartsModule
   ],
   providers: [AuthGuard,AlertService,AuthenticationService,UserService, PollService, ],
   bootstrap: [AppComponent]

@@ -1,10 +1,31 @@
-  <div class="col-md-6 col-md-offset-3">   
-    <div *ngIf="polldetail">
-             <h1>{{polldetail.title}}</h1>
-            <p>{{polldetail.description}}</p>
-            <select class="form-control"  name="content" (change)="submitVote({'content':$event.target.value})">
-                <option value="undefined" disabled>Choose an option</option>
-                <option [ngValue]="val" *ngFor="let val of polldetail.options" >{{val}}</option>
-            </select> 
+<div class="row"> 
+  
+     <div class="col-md-3" >
+        <div *ngIf="polldetail">
+                <h2>{{polldetail.title}}</h2>
+                <p>{{polldetail.description}}</p>
+                <select class="form-control"  name="content" (change)="submitVote({content:$event.target.value})">
+                    <option value="undefined" disabled>Choose an option</option>
+                    <option [ngValue]="val" *ngFor="let val of polldetail.options" >{{val}}</option>
+                </select> 
+        </div> 
     </div>
- </div>
+
+    <div class="col-md-7">
+        <div style="display: block">
+              <canvas baseChart
+                      [data]    =  "doughnutChartData" 
+                      [labels]  = "answerPollKey"
+                      [chartType]="doughnutChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)">
+              </canvas>
+         </div>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary"  (click)="getChartLabel()">Click</button>
+    </div>
+<!--  answerPollKey  "doughnutChartData" -->
+<!--   answerPollValues  "doughnutChartLabels" -->
+
+</div>

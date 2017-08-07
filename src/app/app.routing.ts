@@ -8,13 +8,13 @@ import { PollDetailsComponent } from './polldetails/index'
 import { AuthGuard } from './_guards/index';
 
 const appRoutes: Routes = [
-    {path: 'profile', component: HomeComponent, canActivate: [AuthGuard]},
+    {path: 'user', component: HomeComponent, canActivate: [AuthGuard]},
     {path:'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: '', component: PollComponent},
     {path:'create',component: CreatePollComponent},
     {path: 'polldetail/:id', component: PollDetailsComponent },
-    
+
     //otherwise redirect to home
     {path: '**', redirectTo: ''}
 ];

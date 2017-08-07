@@ -1,7 +1,11 @@
-<div class="col-md-6 col-md-offset-3">
-        <ul class="list-unstyled" *ngFor="let poll of polls">
-            <li>
-                <a class="btn btn-link" [routerLink]="['/polldetail',poll.id]">{{poll.title}}</a>
-            </li>
-        </ul>
- </div>
+<div class="row">
+    <ul class="list-unstyled" *ngFor="let poll of polls">
+        <div class="col-sm-8 col-md-4">
+                <div class="thumbnail">
+                    <i class="fa fa-shield  fa-5x"></i>
+                    <h3>{{poll.title}}</h3>
+                    <a [routerLink]="['/polldetail',poll.id]" class="btn btn-primary" role="button">Vote</a>
+                </div>
+        </div>
+    </ul>
+</div>

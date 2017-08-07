@@ -11,14 +11,27 @@ import { AuthenticationService, AlertService } from '../_services/index'
 
 export class HeaderComponent implements OnInit {
     user:any;
-    constructor(){
+    name:string;
+    constructor( private authentication: AuthenticationService, private router: Router){
     }
 
     ngOnInit(){
        this.isUserLogin();
     }
+
     isUserLogin(){
         this.user = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.user){
+        this.name = this.user.user.userName.charAt(0).toUpperCase() + this.user.user.userName.slice(1);
+        }else{
+            this.name = "";
+        }
+    }
+
+    logout(){
+        this.authentication.logout();
+        this.router.navigate(['/login']);
+        window.location.reload(true);
     }
     
 }

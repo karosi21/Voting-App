@@ -3,6 +3,7 @@ export class Poll {
     title: string;
     description: string;
     answer: pollanswer;
+    user: string;
 }
 
 export interface pollanswer {

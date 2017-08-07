@@ -9,22 +9,29 @@ import { Router } from '@angular/router';
 })
 
 export class CreatePollComponent {
-    regPoll: any = {}; 
+
+   private regPoll: any = {}; 
+   private  createdBy:any;
     constructor(
         private pollService: PollService,
         private router: Router,
         private alertService: AlertService
-    ){}
+    ){
+         this.createdBy = JSON.parse(localStorage.getItem('currentUser'));
+    }
 
       createPoll() {
-    this.pollService.create(this.regPoll).subscribe(
-      data => {
-        this.alertService.success("Poll was successfully created", true);
-        this.router.navigate(["/"]);
-      },
-      error => {
-        this.alertService.error(error);
-      }
-    );
+        this.regPoll.user = this.createdBy.user.id;
+        console.log(this.regPoll);
+        this.pollService.create(this.regPoll).subscribe(
+          data => {
+            this.alertService.success("Poll was successfully created", true);
+            this.router.navigate(["/"]);
+          },
+          error => {
+            this.alertService.error(error);
+          }
+        );
   }
+
 }

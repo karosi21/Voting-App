@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/index';
-import { UserService } from '../_services/index';
-import { Router } from '@angular/router';
+import { UserService , PollService} from '../_services/index';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
@@ -11,21 +11,38 @@ import { AuthenticationService } from '../_services/authentication.service';
 
 
 export class HomeComponent implements OnInit {
-    currentUser: User;
+    currentUser: any;
     loading:boolean = false
     users: User[] = [];
     userById:User;
     regUser:any;
     updateUserVal: User;
     isUserAdmin:any;
+    userdetail:any;
+    polls: any;
+    userPolls:any = [];
+
     public  adminData: any; public adminJson:any;
 
-    constructor(private userService: UserService, private authentication: AuthenticationService, private router: Router){
+    constructor(private userService: UserService, private pollService: PollService,
+         private authentication: AuthenticationService, 
+        private router: Router){
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit(){
-        this.loadAllUsers();        
+        this.loadAllUsers();       
+        this.pollService
+            .getPolls()
+            .subscribe(poll => this.polls = poll.response.data); 
+    }
+
+    myPoll(){
+        this.polls.forEach(element => {
+            if(element.user.id == this.currentUser.user.id){
+               this.userPolls.push( element);
+            }
+        });
     }
 
     logout(){
