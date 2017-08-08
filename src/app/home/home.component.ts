@@ -45,6 +45,11 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    deletePoll(id:string){
+        this.pollService.deletePoll(id).subscribe(() =>{});
+        window.location.reload(true);
+    }
+
     logout(){
         this.authentication.logout();
         this.router.navigate(['/login']);

@@ -6,7 +6,7 @@ import { routing } from  './app.routing'
 import { AlertComponent } from './_directives/index';
 import { HeaderComponent } from './header/index'
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService, PollService} from './_services/index';
+import { AlertService, AuthenticationService, UserService, PollService, PollDataService} from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
@@ -37,7 +37,7 @@ import { AppComponent } from './app.component';
     HttpModule,
     ChartsModule
   ],
-  providers: [AuthGuard,AlertService,AuthenticationService,UserService, PollService, ],
+  providers: [AuthGuard,AlertService,AuthenticationService,UserService, PollService, PollDataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,6 +18,11 @@ export class PollService {
             .map((response: Response) => response.json());
     }
 
+    deletePoll(id:string){
+        return this.http.delete(this.baseUrl+'poll/'+id,this.jwt())
+            .map((response: Response) => response.json());
+    }
+
     create(poll: Poll){
         return this.http.post(this.baseUrl+'poll',poll,this.jwt())
             .map((response: Response) => response.json());

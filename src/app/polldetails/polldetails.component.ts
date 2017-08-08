@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { PollService, AlertService } from '../_services/index';
+import { Component, OnInit , OnDestroy} from '@angular/core';
+import { PollService, AlertService, PollDataService } from '../_services/index';
 import { PollAnswer } from '../_models/pollanswer';
+import { PollComponent } from '../poll/poll.component';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -10,16 +11,20 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 
 export class PollDetailsComponent implements OnInit{
-        //Private properties for binding
-        private sub:any;
-        private polldetail:any;
-        private result: PollAnswer;
-        private getPollOptions: any;
-        private answerPollKey:any;
-        private answerPollValues:any;
 
-        constructor(private route: ActivatedRoute, private pollService: PollService, 
-                          private router: Router, private alertService: AlertService){}
+    //Private properties for binding
+
+    private sub:any;
+    private polldetail:any;
+    private result: PollAnswer;
+    private getPollOptions: any ;
+    private answerPollKey:any;
+    private answerPollValues:any;
+    private listPolls:any;
+
+       constructor(private route: ActivatedRoute, private pollService: PollService, 
+                          private router: Router, private alertService: AlertService,
+                          private pollsData: PollDataService  ){}
 
         ngOnInit(){
             this.sub = this.route.params.subscribe(params =>{
@@ -28,6 +33,8 @@ export class PollDetailsComponent implements OnInit{
             });
 
             this.pollService.getPolls().subscribe( polls =>  this.getPollOptions = polls.response.data);
+          this.listPolls = this.pollsData.listPoll ?  this.pollsData.listPoll : [];
+          // this.getChartLabel();
           }
 
         ngOnDestroy(){
@@ -35,14 +42,22 @@ export class PollDetailsComponent implements OnInit{
             }
 
         submitVote(answer) {
-          alert(answer.content);
-          window.location.reload(true);
-                // this.pollService.vote(this.polldetail.id, answer).subscribe(res => { res});
+                let ans = confirm("You select "+answer.content);
+                if(ans == true){
+                  this.pollService.vote(this.polldetail.id, answer).subscribe(res => { res});
+                }
+                else{
+                window.location.reload(true);
+                return;
+                }
             }
         
-          getChartLabel(){
-            let userAnswers = [];
-            this.getPollOptions .forEach(i =>{
+         getChartLabel(){
+             let userAnswers = [];
+             console.log(this.listPolls); 
+
+
+          this.listPolls.forEach(i =>{
                 if(this.polldetail.id == i.id){
                   i.answers.forEach( j =>{
                   userAnswers.push(j.content);
@@ -57,14 +72,14 @@ export class PollDetailsComponent implements OnInit{
             ++result[userAnswers[i]];
           }
 
-        this.answerPollKey     =  Object.keys(result);
-        this.answerPollValues =  (<any>Object).values(result);
+         this.answerPollKey     =   Object.keys(result);
+         this.answerPollValues =   (<any>Object).values(result);
         
         }
 
           // Doughnut
-      public doughnutChartLabels:string[]  = ['heki', 'jsdsd'];  //= this.answerPollValues; //['Download Sales', 'In-Store Sales', 'Mail-Order Sales','Hello'];
-      public doughnutChartData:number[]  =  [350, 450];  // = this.answerPollValues ; //=  [350, 450, 900, 90];
+      public doughnutChartLabels:string[]  //= this.answerPollKey;                //= this.answerPollValues; //['Download Sales', 'In-Store Sales', 'Mail-Order Sales','Hello'];
+      public doughnutChartData:number[]  = [5] //=  this.answerPollValues;  // = this.answerPollValues ; //=  [350, 450, 900, 90];
       public doughnutChartType:string = 'doughnut';
 
       // events
