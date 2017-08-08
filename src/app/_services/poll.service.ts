@@ -5,7 +5,7 @@ import { Poll } from '../_models/poll';
 
 @Injectable()
 export class PollService {
-    baseUrl: string = ' http://localhost:1337/';
+    baseUrl: string = ' https://votebackend.herokuapp.com/';
     constructor(private http: Http){}
 
     getPolls(){

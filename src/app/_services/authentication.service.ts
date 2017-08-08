@@ -8,7 +8,7 @@ export class AuthenticationService{
     constructor(private http: Http){}
 
     login(userName: string, password: string){
-        return this.http.post(' http://localhost:1337/login', JSON.stringify({userName: userName, password: password}))
+        return this.http.post(' https://votebackend.herokuapp.com/login', JSON.stringify({userName: userName, password: password}))
             .map((response: Response) =>{
                 let user = response.json();
                 if(user.response.data.user && user.response.data.token){

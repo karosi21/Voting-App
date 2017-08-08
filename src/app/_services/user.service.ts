@@ -4,7 +4,7 @@ import { User } from '../_models/index';
 
 @Injectable()
 export class UserService {
-    baseUrl: string = ' http://localhost:1337/';
+    baseUrl: string = ' https://votebackend.herokuapp.com/'; 
     constructor(private http: Http){}
     
     getAll(){
