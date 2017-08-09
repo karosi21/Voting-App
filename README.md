@@ -1,28 +1,25 @@
-# VoteAppFE
+Here are the specific user stories you should implement for this project:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
+User Story: As an authenticated user, I can keep my polls and come back later to access them.
 
-## Development server
+User Story: As an authenticated user, I can share my polls with my friends.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+User Story: As an authenticated user, I can see the aggregate results of my polls.
 
-## Code scaffolding
+User Story: As an authenticated user, I can delete polls that I decide I don't want anymore.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+User Story: As an authenticated user, I can create a poll with any number of possible items.
 
-## Build
+User Story: As an unauthenticated or authenticated user, I can see and vote on everyone's polls.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+User Story: As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.)
 
-## Running unit tests
+User Story: As an authenticated user, if I don't like the options on a poll, I can create a new option.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Once you've finished implementing these user stories, click the "I've completed this challenge" button and enter the URLs for both your GitHub repository and your live app running on Heroku.
 
-## Running end-to-end tests
+You can get feedback on your project by sharing it with your friends on 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+https://vote-frontend.herokuapp.com/
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Email: adekayor@gmail.com | Whatsapp|Phone Number 07053310301 | github https://github.com/karosi21 or https://github.com/karosi12
